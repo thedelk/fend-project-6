@@ -29,7 +29,8 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <PageMain books={this.state.books} moveShelf={this.moveShelf} />
+        {/* <PageMain books={this.state.books} moveShelf={this.moveShelf} /> */}
+        <PageSearch />
       </div>
     );
   }
