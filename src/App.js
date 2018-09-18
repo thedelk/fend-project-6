@@ -1,3 +1,6 @@
+// Credit given to Maeva's instruction, without which I would be lost
+// https://www.youtube.com/watch?v=i6L2jLHV9j8&t=2953s&list=PLq2plN5uyLIVHGcB-OT1ra9asp-anLH2E&index=4
+
 import React from 'react'
 import PageMain from './PageMain';
 import PageSearch from './PageSearch';
