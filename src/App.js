@@ -2,6 +2,7 @@
 // https://www.youtube.com/watch?v=i6L2jLHV9j8&t=2953s&list=PLq2plN5uyLIVHGcB-OT1ra9asp-anLH2E&index=4
 
 import React from "react";
+import { Route } from "react-router-dom";
 import PageMain from "./PageMain";
 import PageSearch from "./PageSearch";
 import * as BooksAPI from "./BooksAPI";
@@ -29,8 +30,20 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {/* <PageMain books={this.state.books} moveShelf={this.moveShelf} /> */}
-        <PageSearch />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <PageMain books={this.state.books} moveShelf={this.moveShelf} />
+          )}
+        />
+
+        <Route
+          path="/search"
+          render={() => (
+            <PageSearch moveShelf={this.moveShelf} books={this.state.books} />
+          )}
+        />
       </div>
     );
   }
