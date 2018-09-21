@@ -3,10 +3,10 @@
 
 import React from "react";
 import { Route } from "react-router-dom";
-import PageMain from "./PageMain";
-import PageSearch from "./PageSearch";
+import PageMain from "./components/PageMain";
+import PageSearch from "./components/PageSearch";
 import * as BooksAPI from "./BooksAPI";
-import "./App.css";
+import "./css/App.css";
 
 class BooksApp extends React.Component {
   state = {
