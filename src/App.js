@@ -1,6 +1,6 @@
 import React from "react";
 // import * as BooksAPI from './BooksAPI'
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import ScreenMain from "./screens/ScreenMain";
 import ScreenSearch from "./screens/ScreenSearch";
 import "./App.css";
