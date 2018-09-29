@@ -18,8 +18,12 @@ export default class Shelf extends Component {
           <div className="bookshelf-books">
             <ol className="books-grid">
               {this.props.shelf.map((book, key) => (
-                <Book key={key} book={book} updateShelf={this.props.updateShelf} />
-                ))}
+                <Book
+                  key={key}
+                  book={book}
+                  updateShelf={this.props.updateShelf}
+                />
+              ))}
             </ol>
           </div>
         </div>

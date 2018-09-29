@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Shelf from "../components/Shelf";
+import Button from "../components/Button";
+import Title from "../components/Title";
 import { getAll, update } from "../BooksAPI";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default class ScreenMain extends Component {
   state = { books: [] };
@@ -30,9 +32,7 @@ export default class ScreenMain extends Component {
   render() {
     return (
       <div className="list-books">
-        <div className="list-books-title">
-          <h1>MyReads</h1>
-        </div>
+        <Title />
         <div className="list-books-content">
           <Shelf
             name="Currently Reading"
@@ -50,11 +50,7 @@ export default class ScreenMain extends Component {
             updateShelf={this.updateShelf}
           />
         </div>
-        <div className="open-search">
-          <Link to="/search">
-            Add a book
-          </Link>
-        </div>
+        <Button />
       </div>
     );
   }

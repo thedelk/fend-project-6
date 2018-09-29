@@ -4,7 +4,7 @@ import ScreenMain from "./screens/ScreenMain";
 import ScreenSearch from "./screens/ScreenSearch";
 import "./App.css";
 
-class BooksApp extends React.Component {
+export default class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
@@ -14,5 +14,3 @@ class BooksApp extends React.Component {
     );
   }
 }
-
-export default BooksApp;
