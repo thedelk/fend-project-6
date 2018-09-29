@@ -45,6 +45,12 @@ export default class ScreenSearch extends Component {
       if (res.error) {
         return this.setState({ queryResults: [] });
       } else {
+        res.forEach(b => {
+          let f = this.state.books.filter(B => B.id === b.id);
+          if (f[0]) {
+            b.shelf = f[0].shelf;
+          }
+        });
         return this.setState({ queryResults: res });
       }
     });
