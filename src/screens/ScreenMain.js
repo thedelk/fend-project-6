@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default class ScreenMain extends Component {
   state = { books: [] };
 
+  // Retrieve latest book info, render if state is different
   async componentDidMount() {
     try {
       const getBooks = await getAll();

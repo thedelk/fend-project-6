@@ -4,7 +4,7 @@ import Book from "./Book";
 export default class Shelf extends Component {
   async componentDidMount() {
     try {
-      // console.log(this);
+      console.log(this);
     } catch (error) {
       console.log(error);
     }
@@ -19,7 +19,7 @@ export default class Shelf extends Component {
             <ol className="books-grid">
               {this.props.shelf.map((book, key) => (
                 <Book key={key} book={book} updateShelf={this.props.updateShelf} />
-              ))}
+                ))}
             </ol>
           </div>
         </div>

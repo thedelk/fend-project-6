@@ -21,7 +21,7 @@ export default class Book extends Component {
             {/* TODO: Customize select onChange */}
             <div className="book-shelf-changer">
               <select
-                value={this.props.book.shelf ? this.props.book.shelf : ""}
+                value={this.props.book.shelf ? this.props.book.shelf : "none"}
                 onChange={event => {
                   this.props.updateShelf(this.props.book, event.target.value);
                 }}

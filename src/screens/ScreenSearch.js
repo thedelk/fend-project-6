@@ -24,6 +24,7 @@ export default class ScreenSearch extends Component {
     try {
       const getBooks = await getAll();
       this.setState({ books: getBooks });
+      // console.log(this.state);
     } catch (error) {
       console.log(error);
     }
@@ -31,6 +32,7 @@ export default class ScreenSearch extends Component {
 
   updateQuery = queryString => {
     this.setState({ queryString: queryString }, this.submitSearch);
+    // console.log(queryString);
   };
 
   // TODO: Customize this
@@ -39,7 +41,7 @@ export default class ScreenSearch extends Component {
       return this.setState({ queryResults: [] });
     }
     search(this.state.queryString.trim()).then(res => {
-      console.log(res);
+      // console.log(res);
       if (res.error) {
         return this.setState({ queryResults: [] });
       } else {
@@ -75,7 +77,7 @@ export default class ScreenSearch extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {this.state.queryResults.map((item, key) => (
-              <Book key={key} book={item} />
+              <Book key={key} book={item} updateShelf={this.updateShelf} />
             ))}
           </ol>
         </div>
