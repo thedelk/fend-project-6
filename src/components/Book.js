@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
 export default class Book extends Component {
+
   render() {
+    // console.log(this);
     // Set variable to reduce repeat code in return()
     const { book, updateShelf } = this.props;
 

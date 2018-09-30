@@ -4,7 +4,7 @@ import Book from "./Book";
 export default class Shelf extends Component {
   async componentDidMount() {
     try {
-      console.log(this);
+      // console.log(this);
     } catch (error) {
       console.log(error);
     }

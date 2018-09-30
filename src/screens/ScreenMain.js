@@ -18,14 +18,14 @@ export default class ScreenMain extends Component {
     }
   }
 
-  // TODO: Customize this
-  updateShelf = (book, shelf) => {
-    update(book, shelf).then(response => {
+  updateShelf = async (book, shelf) => {
+    try {
+      await update(book, shelf);
       book.shelf = shelf;
-      this.setState(state => ({
-        books: state.books.filter(b => b.id !== book.id).concat([book])
-      }));
-    });
+      this.setState(book);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // TODO: Customize Shelf props

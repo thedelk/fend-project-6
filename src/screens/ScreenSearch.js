@@ -5,20 +5,11 @@ import { getAll, update, search } from "../BooksAPI";
 import Book from "../components/Book";
 
 export default class ScreenSearch extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: [],
-      queryResults: [],
-      queryString: ""
-    };
-  }
-
-  // state = {
-  //   books: [],
-  //   queryResults: [],
-  //   queryString: ""
-  // };
+  state = {
+    books: [],
+    queryResults: [],
+    queryString: ""
+  };
 
   async componentDidMount() {
     try {
@@ -56,14 +47,14 @@ export default class ScreenSearch extends Component {
     });
   }
 
-  // TODO: Customize this
-  updateShelf = (book, shelf) => {
-    update(book, shelf).then(response => {
+  updateShelf = async (book, shelf) => {
+    try {
+      await update(book, shelf);
       book.shelf = shelf;
-      this.setState(state => ({
-        books: state.books.filter(b => b.id !== book.id).concat([book])
-      }));
-    });
+      this.setState(book);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   render() {
