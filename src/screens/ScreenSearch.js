@@ -27,31 +27,59 @@ export default class ScreenSearch extends Component {
   };
 
   // TODO: Customize this
-  submitSearch() {
-    if (this.state.queryString === "" || this.state.queryString === undefined) {
+  // submitSearch() {
+  //   if (this.state.queryString === "" || this.state.queryString === undefined) {
+  //     return this.setState({ queryResults: [] });
+  //   }
+  //   search(this.state.queryString.trim()).then(res => {
+  //     // console.log(res);
+  //     if (res.error) {
+  //       return this.setState({ queryResults: [] });
+  //     } else {
+  //       res.forEach(b => {
+  //         let f = this.state.books.filter(B => B.id === b.id);
+  //         if (f[0]) {
+  //           b.shelf = f[0].shelf;
+  //         }
+  //       });
+  //       return this.setState({ queryResults: res });
+  //     }
+  //   });
+  // }
+
+  async submitSearch() {
+    let query = this.state.queryString.trim();
+
+    if (query === "" || query === undefined) {
       return this.setState({ queryResults: [] });
     }
-    search(this.state.queryString.trim()).then(res => {
-      // console.log(res);
-      if (res.error) {
-        return this.setState({ queryResults: [] });
-      } else {
-        res.forEach(b => {
-          let f = this.state.books.filter(B => B.id === b.id);
-          if (f[0]) {
-            b.shelf = f[0].shelf;
-          }
-        });
-        return this.setState({ queryResults: res });
-      }
-    });
+
+    try {
+      const getResults = await search(query);
+      getResults.forEach(result => {
+        // result.shelf = shelf;
+        console.log(result);
+        let f = this.state.books.filter(B => B.id === result.id);
+        // console.log(f);
+        // console.log(this.state.books);
+        // console.log(f[0]);
+        if (f[0]) {
+          result.shelf = f[0].shelf;
+        }
+      });
+      this.setState({ queryResults: getResults });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   updateShelf = async (book, shelf) => {
     try {
       await update(book, shelf);
       book.shelf = shelf;
+      // console.log(shelf);
       this.setState(book);
+      // console.log(this.state);
     } catch (error) {
       console.log(error);
     }
@@ -73,8 +101,8 @@ export default class ScreenSearch extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.queryResults.map((item, key) => (
-              <Book key={key} book={item} updateShelf={this.updateShelf} />
+            {this.state.queryResults.map((book, key) => (
+              <Book key={key} book={book} updateShelf={this.updateShelf} />
             ))}
           </ol>
         </div>
