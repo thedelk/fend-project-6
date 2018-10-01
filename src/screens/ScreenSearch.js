@@ -47,6 +47,10 @@ export default class ScreenSearch extends Component {
   //   });
   // }
 
+  // submitSearch = async queryString => {
+  //   const value = event.target.value;
+  // }
+
   async submitSearch() {
     let query = this.state.queryString.trim();
 
