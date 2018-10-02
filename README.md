@@ -55,7 +55,9 @@ To fire it up on your own machine, fork or clone your own copy.
 
 ## Lessons Learned
 
-Where to begin. Truth be told, I'm not extremely happy with the methods
+Where to begin. Truth be told, I'm not extremely happy with the structure of my project. I overestimated my skill and learned the hard way that React is a beast I couldn't immediately tame.
+
+I have a lot to learn.
 
 ## Contributing
 
