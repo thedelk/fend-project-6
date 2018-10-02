@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import Book from "./Book";
 
 export default class Shelf extends Component {
-  async componentDidMount() {
+  componentDidMount = async () => {
     try {
       // console.log(this);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   render() {
     return (

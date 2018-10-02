@@ -11,79 +11,61 @@ export default class ScreenSearch extends Component {
     queryString: ""
   };
 
-  async componentDidMount() {
+  // Retrieve latest book info, render if state is different
+  componentDidMount = async () => {
     try {
       const getBooks = await getAll();
       this.setState({ books: getBooks });
-      // console.log(this.state);
     } catch (error) {
       console.log(error);
     }
-  }
-
-  updateQuery = queryString => {
-    this.setState({ queryString: queryString }, this.submitSearch);
-    // console.log(queryString);
   };
 
-  // TODO: Customize this
-  // submitSearch() {
-  //   if (this.state.queryString === "" || this.state.queryString === undefined) {
-  //     return this.setState({ queryResults: [] });
-  //   }
-  //   search(this.state.queryString.trim()).then(res => {
-  //     // console.log(res);
-  //     if (res.error) {
-  //       return this.setState({ queryResults: [] });
-  //     } else {
-  //       res.forEach(b => {
-  //         let f = this.state.books.filter(B => B.id === b.id);
-  //         if (f[0]) {
-  //           b.shelf = f[0].shelf;
-  //         }
-  //       });
-  //       return this.setState({ queryResults: res });
-  //     }
-  //   });
-  // }
+  // Get the search text, then perform the search against it
+  updateQuery = queryString => {
+    this.setState({ queryString: queryString }, this.submitSearch);
+  };
 
-  // submitSearch = async queryString => {
-  //   const value = event.target.value;
-  // }
-
-  async submitSearch() {
+  // Execute search
+  submitSearch = async () => {
+    // Prevent leading and trailing spaces from being included in query
     let query = this.state.queryString.trim();
 
+    // Ignore empty or undefined queries
     if (query === "" || query === undefined) {
       return this.setState({ queryResults: [] });
     }
 
     try {
       const getResults = await search(query);
-      getResults.forEach(result => {
-        // result.shelf = shelf;
-        console.log(result);
-        let f = this.state.books.filter(B => B.id === result.id);
-        // console.log(f);
-        // console.log(this.state.books);
-        // console.log(f[0]);
-        if (f[0]) {
-          result.shelf = f[0].shelf;
+
+      // Loop through each result
+      getResults.forEach(searchedBook => {
+        // Store searchedBook and set equal to book from this.state if "id" matches
+        // If "id" doesn't match, variable will be an empty array
+        // Credit goes to Ryan Waite: https://www.youtube.com/watch?v=acJHkd6K5kI
+        let tempBook = this.state.books.filter(
+          myBooks => myBooks.id === searchedBook.id
+        );
+
+        // If array has any elements (meaning: if any searched books are on a shelf),
+        // set the "shelf" value to that of the book in this.state
+        if (tempBook[0]) {
+          searchedBook.shelf = tempBook[0].shelf;
         }
       });
       this.setState({ queryResults: getResults });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
+  // If a book's shelf changes, update state
   updateShelf = async (book, shelf) => {
     try {
       await update(book, shelf);
       book.shelf = shelf;
-      // console.log(shelf);
       this.setState(book);
-      // console.log(this.state);
     } catch (error) {
       console.log(error);
     }
