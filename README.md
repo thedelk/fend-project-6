@@ -9,7 +9,6 @@
         - [Tutorials](#tutorials)
         - [Libraries](#libraries)
     - [Using Locally](#using-locally)
-    - [Lessons Learned](#lessons-learned)
     - [Contributing](#contributing)
 - [MyReads Project (Original Rubric)](#myreads-project-original-rubric)
     - [TL;DR](#tldr)
@@ -52,12 +51,6 @@ To fire it up on your own machine, fork or clone your own copy.
 1. From the project root, open a terminal and run `npm install` to install all package dependencies
 2. Once all dependencies are installed, run `npm start` to start up a local server instance
 3. Move the books from shelf to shelf, or search and add new ones
-
-## Lessons Learned
-
-Where to begin. Truth be told, I'm not extremely happy with the structure of my project. I overestimated my skill and learned the hard way that React is a beast I couldn't immediately tame.
-
-I have a lot to learn.
 
 ## Contributing
 
